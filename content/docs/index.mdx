@@ -5,6 +5,7 @@ description: Welcome to the Morpheus API Gateway Documentation.
 
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Card } from 'fumadocs-ui/components/card';
+import { Callout } from 'fumadocs-ui/components/callout';
 
 # Introduction
 
@@ -43,6 +44,10 @@ It simplifies interaction with the underlying blockchain infrastructure, providi
   </Tab>
 </Tabs>
 
+<Callout type="info">
+  For programmatic access or use with Language Models, the raw documentation content is available at the [`/llms.txt`](/llms.txt) endpoint.
+</Callout>
+
 ## Getting Started
 
 1.  **Register & Login:** Use the [`/auth/register`](/docs/auth/register_user_api_v1_auth_register_post) and [`/auth/login`](/docs/auth/login_api_v1_auth_login_post) endpoints to create an account and obtain a JWT access token.
@@ -53,3 +58,5 @@ It simplifies interaction with the underlying blockchain infrastructure, providi
     *   Create a session with a provider ([`/session/bidsession`](/docs/session/create_bid_session_api_v1_session_bidsession_post) or [`/session/modelsession`](/docs/session/create_model_session_api_v1_session_modelsession_post)).
 
 Explore the **API** section in the sidebar for detailed information on each endpoint.
+
+---
