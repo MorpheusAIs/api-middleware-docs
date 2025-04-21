@@ -9,6 +9,8 @@ import { notFound } from 'next/navigation';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
+import { Rate } from '@/components/rate';
+import { onRateAction } from '@/lib/github';
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -29,6 +31,7 @@ export default async function Page(props: {
             a: createRelativeLink(mainDocs, page),
           })}
         />
+        <Rate onRateAction={onRateAction} />
       </DocsBody>
     </DocsPage>
   );
