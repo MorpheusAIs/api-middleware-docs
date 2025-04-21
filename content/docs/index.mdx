@@ -1,13 +1,55 @@
 ---
-title: Hello World
-description: Your first document
+title: Home
+description: Welcome to the Morpheus API Gateway Documentation.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Card } from 'fumadocs-ui/components/card';
 
-## What is Next?
+# Introduction
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+This gateway serves as a bridge, connecting standard Web2 clients and applications to the decentralized Morpheus Lumerin AI Marketplace.
+
+It simplifies interaction with the underlying blockchain infrastructure, providing familiar RESTful API endpoints for key operations.
+
+## Key Features
+
+<Tabs items={['Authentication', 'AI Interaction', 'Session Management']}>
+  <Tab value="Authentication">
+    <Card title="User & API Key Management">
+      Securely manage user accounts and API keys for accessing the gateway's features. Includes endpoints for:
+      - User Registration & Login (JWT-based)
+      - API Key Creation & Deletion
+      - Secure Storage & Management of Blockchain Private Keys (optional)
+    </Card>
+  </Tab>
+  <Tab value="AI Interaction">
+    <Card title="Model Discovery & Chat Completions">
+      Interact with AI models available on the Morpheus network.
+      - List available AI Models
+      - Get detailed bid information for models
+      - Use the OpenAI-compatible `/chat/completions` endpoint for inference
+    </Card>
+  </Tab>
+  <Tab value="Session Management">
+    <Card title="Blockchain Session Handling">
+      Manage interaction sessions with AI providers on the Lumerin Protocol.
+      - Approve MOR token spending for sessions
+      - Create sessions based on specific Bids or Models
+      - Close active sessions
+      - Monitor session health
+      - Configure automation settings for session handling
+    </Card>
+  </Tab>
+</Tabs>
+
+## Getting Started
+
+1.  **Register & Login:** Use the [`/auth/register`](/docs/auth/register_user_api_v1_auth_register_post) and [`/auth/login`](/docs/auth/login_api_v1_auth_login_post) endpoints to create an account and obtain a JWT access token.
+2.  **Create API Key:** Generate an API key using [`/auth/keys`](/docs/auth/create_api_key_api_v1_auth_keys_post) while authenticated with your JWT.
+3.  **Interact:** Use your API key (as a Bearer token) to access other endpoints like [`/chat/completions`](/docs/chat/create_chat_completion_api_v1_chat_completions_post) or [`/models`](/docs/models/list_models_api_v1_models__get).
+4.  **(For Inference):** Before using [`/chat/completions`](/docs/chat/create_chat_completion_api_v1_chat_completions_post), you'll typically need to:
+    *   Approve MOR spending ([`/session/approve`](/docs/session/approve_spending_api_v1_session_approve_post)).
+    *   Create a session with a provider ([`/session/bidsession`](/docs/session/create_bid_session_api_v1_session_bidsession_post) or [`/session/modelsession`](/docs/session/create_model_session_api_v1_session_modelsession_post)).
+
+Explore the **API** section in the sidebar for detailed information on each endpoint.
