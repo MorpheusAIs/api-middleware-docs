@@ -8,6 +8,7 @@ import {
 import { notFound } from 'next/navigation';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { getMDXComponents } from '@/mdx-components';
+import type { Metadata } from 'next';
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -37,15 +38,32 @@ export async function generateStaticParams() {
   return getPages().map((page) => ({ slug: page.slugs }));
 }
 
-export async function generateMetadata(props: {
+export async function generateMetadata({
+  params,
+}: {
   params: Promise<{ slug?: string[] }>;
-}) {
-  const params = await props.params;
-  const page = getPage(params.slug);
+}): Promise<Metadata> {
+  const { slug = [] } = await params;
+  const page = getPage(slug);
   if (!page) notFound();
+
+  const imageUrl = ['/docs-og', ...slug, 'opengraph-image.png'].join('/');
 
   return {
     title: page.data.title,
     description: page.data.description,
+    openGraph: {
+      title: page.data.title,
+      description: page.data.description,
+      images: {
+        url: imageUrl,
+      },
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.data.title,
+      description: page.data.description,
+      images: [imageUrl],
+    },
   };
 }
