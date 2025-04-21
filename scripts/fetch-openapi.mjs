@@ -1,7 +1,6 @@
     // scripts/fetch-openapi.mjs
     import fs from 'fs/promises';
     import path from 'path';
-    import fetch from 'node-fetch'; // Or use native fetch if Node >= 18
 
     // Configuration
     const prodUrl = process.env.NEXT_PUBLIC_API_BASE_URL_PROD;
