@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Call backend login endpoint
-    const backendUrl = process.env.BACKEND_API_URL || 'http://localhost:8000';
+    const backendUrl = process.env.BACKEND_API_URL || 'https://api.mor.org';
     console.log('Attempting login with backend URL:', backendUrl);
     
     const requestBody = {
