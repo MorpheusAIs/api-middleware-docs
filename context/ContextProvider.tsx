@@ -26,7 +26,7 @@ const metadata = {
 };
 
 // Define the networks specifically for createAppKit, matching the config
-const appKitNetworks = [mainnet, arbitrum, base];
+const appKitNetworks: [typeof mainnet, typeof arbitrum, typeof base] = [mainnet, arbitrum, base];
 
 // Create the AppKit instance (modal)
 // This should ideally be done outside the component function if it doesn't depend on props/state
