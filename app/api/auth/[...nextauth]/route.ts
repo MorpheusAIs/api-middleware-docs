@@ -56,7 +56,7 @@ interface ExtendedSession extends DefaultSession {
 }
 
 
-export const authOptions: AuthOptions = {
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -65,7 +65,7 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials: Record<string, string> | undefined, req): Promise<AuthorizeUser | null> {
-        const backendUrl = process.env.BACKEND_API_URL || 'https://api.mor.org';
+        const backendUrl = process.env.BACKEND_API_URL || 'http://api.mor.org';
 
         if (!credentials?.email || !credentials?.password) {
           console.error("Missing credentials");
@@ -177,7 +177,7 @@ export const authOptions: AuthOptions = {
        }
 
        try {
-         const backendUrl = process.env.BACKEND_API_URL || 'https://api.mor.org';
+         const backendUrl = process.env.BACKEND_API_URL || 'http://api.mor.org';
          const response = await fetch(`${backendUrl}/api/v1/auth/refresh`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
