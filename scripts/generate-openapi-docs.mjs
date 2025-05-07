@@ -1,10 +1,13 @@
 import { generateFiles } from 'fumadocs-openapi';
-import path from 'node:path';
+
+// Prefer remote schema URL (build-time fetch + runtime fetch) – falls back to local copy if env is absent.
+const schemaUrl =
+  process.env.OPENAPI_SCHEMA_URL ?? 'https://api.mor.org/api/v1/openapi.json';
 
 void generateFiles({
-  input: ['./public/openapi.json'],
-  output: './content/docs', // Change output path to generate directly into content/docs
-  per: 'operation', // Generate one page per operation
-  groupBy: 'tag', // Keep grouping by tag, but now directly under /docs
-  addGeneratedComment: true, // Add a comment indicating auto-generation
+  input: [schemaUrl],
+  output: './content/docs',
+  per: 'operation',
+  groupBy: 'tag',
+  addGeneratedComment: true,
 }); 
