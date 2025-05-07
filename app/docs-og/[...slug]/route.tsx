@@ -4,9 +4,9 @@ import { notFound } from 'next/navigation';
 
 export async function GET(
   _req: Request,
-  { params }: { params: Promise<{ slug?: string[] }> },
+  { params }: any,
 ) {
-  const { slug } = await params;
+  const { slug } = params;
   // Ensure slug is a valid array before processing
   if (!Array.isArray(slug)) {
     notFound();
