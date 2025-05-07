@@ -4,7 +4,7 @@ import glob from 'fast-glob';
 
 // Prefer remote schema URL (build-time fetch + runtime fetch) – falls back to local copy if env is absent.
 const schemaUrl =
-  process.env.OPENAPI_SCHEMA_URL ?? 'https://api.mor.org/api/v1/openapi.json';
+  process.env.OPENAPI_SCHEMA_URL ?? 'http://api.mor.org/api/v1/openapi.json';
 
 void generateFiles({
   input: [schemaUrl],
@@ -14,7 +14,7 @@ void generateFiles({
   addGeneratedComment: true,
 });
 
-const REMOTE_DOC_URL = 'https://api.mor.org/api/v1/openapi.json';
+const REMOTE_DOC_URL = 'http://api.mor.org/api/v1/openapi.json';
 
 // Post-process generated MDX to point to remote URL instead of local path
 async function patchGeneratedFiles() {

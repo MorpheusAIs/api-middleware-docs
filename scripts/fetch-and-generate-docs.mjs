@@ -4,7 +4,7 @@ import glob from 'fast-glob';
 import { generateFiles } from 'fumadocs-openapi';
 
 // Configuration
-const REMOTE_URL = 'https://api.mor.org/api/v1/openapi.json';
+const REMOTE_URL = 'http://api.mor.org/api/v1/openapi.json';
 const LOCAL_SCHEMA_PATH = path.resolve(process.cwd(), 'ai-docs', 'openapi.json');
 const TMP_SCHEMA_PATH = path.resolve(process.cwd(), '.tmp-schema.json');
 
