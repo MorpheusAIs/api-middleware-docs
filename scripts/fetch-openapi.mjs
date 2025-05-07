@@ -18,7 +18,7 @@
 
         try {
             if (useRemote && backendUrl) {
-                const openApiUrl = `${backendUrl}/openapi.json`;
+                const openApiUrl = `${backendUrl}/api/v1/openapi.json`;
                 sourceDescription = `remote URL: ${openApiUrl}`;
                 console.log(`Attempting to fetch OpenAPI schema from ${sourceDescription}...`);
                 const response = await fetch(openApiUrl);
