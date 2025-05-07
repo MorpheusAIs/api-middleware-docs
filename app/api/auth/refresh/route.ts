@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Call backend refresh endpoint
-    const backendUrl = process.env.BACKEND_API_URL || 'http://localhost:8000';
+    const backendUrl = process.env.BACKEND_API_URL || 'http://api.mor.org';
     
     const response = await fetch(`${backendUrl}/api/v1/auth/refresh`, {
       method: 'POST',
