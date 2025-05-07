@@ -1,14 +1,14 @@
 import { getToken } from 'next-auth/jwt';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-const API_BACKEND_URL = process.env.API_BACKEND_URL || 'http://127.0.0.1:8000';
+const BACKEND_API_URL = process.env.BACKEND_API_URL || 'http:api.mor.org';
 
 // Proxy DELETE requests for a specific key ID
 export async function DELETE(
-    req: NextRequest,
-    { params }: { params: { key_id: string } }
+    req: Request,
+    { params }: any
 ) {
-  const token = await getToken({ req });
+  const token = await getToken({ req: req as any });
 
   if (!token || !token.accessToken) {
     return NextResponse.json({ message: 'Authentication required' }, { status: 401 });
@@ -19,7 +19,7 @@ export async function DELETE(
     return NextResponse.json({ message: 'Key ID is required' }, { status: 400 });
   }
 
-  const url = `${API_BACKEND_URL}/api/v1/auth/keys/${key_id}`;
+  const url = `${BACKEND_API_URL}/api/v1/auth/keys/${key_id}`;
   const headers = new Headers(); // Don't forward request headers automatically for DELETE
   headers.set('Authorization', `Bearer ${token.accessToken}`);
   headers.set('Accept', 'application/json'); // Expect JSON response from backend
