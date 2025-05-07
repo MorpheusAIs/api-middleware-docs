@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "fetch-schema": "node ./scripts/fetch-openapi.mjs",
-    "generate-docs": "node ./scripts/generate-openapi-docs.mjs",
-    "build": "npm run fetch-schema && npm run generate-docs && next build",
+    "fetch-and-generate": "node ./scripts/fetch-and-generate-docs.mjs",
+    "build": "npm run fetch-and-generate && next build",
     "dev": "next dev --turbo",
     "start": "next start",
     "postinstall": "fumadocs-mdx"
