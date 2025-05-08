@@ -25,6 +25,13 @@ async function fetchAndGenerateDocs() {
       if (response.ok) {
         schema = await response.json();
         console.log(`✅ Successfully fetched schema from ${sourceDescription}.`);
+
+        // Inject default servers array if it is missing so Fumadocs does not fall back to https://example.com
+        if (!schema.servers || schema.servers.length === 0) {
+          const baseUrl = new URL(REMOTE_URL).origin;
+          schema.servers = [{ url: baseUrl, description: 'Default server' }];
+          console.log(`ℹ️ Added default server ${baseUrl} to OpenAPI schema (required by Fumadocs).`);
+        }
       } else {
         throw new Error(`Failed to fetch schema: ${response.status} ${response.statusText}`);
       }
