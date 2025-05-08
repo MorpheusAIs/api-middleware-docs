@@ -71,7 +71,7 @@ async function fetchAndGenerateDocs() {
     await Promise.all(
       files.map(async (file) => {
         const text = await fs.readFile(file, 'utf8');
-        const fixedText = text.replace(/document=\{".*\.json"\}/g, `document={"${REMOTE_URL}"}`);
+        const fixedText = text.replace(/document=\{".*\.json"\}/g, `document={"/openapi.json"}`);
         
         if (fixedText !== text) {
           await fs.writeFile(file, fixedText);
