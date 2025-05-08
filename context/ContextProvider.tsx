@@ -19,9 +19,9 @@ if (!projectId) {
 
 // Set up metadata for your application
 const metadata = {
-  name: 'Your App Name', // Replace with your app's name
-  description: 'Your App Description', // Replace with your app's description
-  url: 'https://yourapp.com', // Replace with your app's URL (origin must match domain & subdomain)
+  name: 'Api Gateway Docs',
+  description: 'API Gateway connecting Web2 clients to the Morpheus-Lumerin AI Marketplace', 
+  url: 'https://apidocs.mor.org', // Replace with your app's URL (origin must match domain & subdomain)
   icons: ['https://your-icon-url.com/icon.png'], // Replace with your app's icon URL
 };
 
@@ -32,7 +32,7 @@ const appKitNetworks: [typeof mainnet, typeof arbitrum, typeof base] = [mainnet,
 // This should ideally be done outside the component function if it doesn't depend on props/state
 createAppKit({
   adapters: [wagmiAdapter],
-  projectId: projectId || 'YOUR_PROJECT_ID_PLACEHOLDER', // Use placeholder if undefined
+  projectId: process.env.NEXT_PUBLIC_APPKIT_PROJECT_ID || '',
   // Use the directly imported networks for createAppKit
   networks: appKitNetworks,
   // defaultNetwork: mainnet, // Optional: Set a default network if needed
